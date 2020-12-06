@@ -1,0 +1,155 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Materials/Wall.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/ZoneWalls.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/CameraControl.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0, 0.27451, 1, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="BoxShape" id=5]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Floor" type="KinematicBody" parent="."]
+transform = Transform( 2311.82, 0, 0, 0, 1, 0, 0, 0, 3462.95, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="CamBase" type="Camera" parent="."]
+transform = Transform( -1.62921e-07, 1, 1.62921e-07, 0, -1.62921e-07, 1, 1, 1.62921e-07, 2.65431e-14, 0, 180, 0 )
+current = true
+far = 8192.0
+script = ExtResource( 3 )
+
+[node name="StartingPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -76.3605, 3.635, -64.7934 )
+
+[node name="Wall" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 58.762, 0, 0, 0, 101.458, 76.1372, 0, 0 )
+input_ray_pickable = false
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall"]
+shape = SubResource( 5 )
+
+[node name="Wall2" type="KinematicBody" parent="."]
+transform = Transform( -1, 0, -3.30592e-05, 0, 58.762, 0, 3.25841e-07, 0, -101.458, -84.7244, 0, 0 )
+input_ray_pickable = false
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall2"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall2"]
+shape = SubResource( 5 )
+
+[node name="Wall3" type="KinematicBody" parent="."]
+transform = Transform( -1.62921e-07, 0, -101.458, 0, 58.762, 0, 1, 0, -1.65296e-05, -0.133263, 0, 78.2688 )
+input_ray_pickable = false
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall3"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall3"]
+shape = SubResource( 5 )
+
+[node name="Wall4" type="KinematicBody" parent="."]
+transform = Transform( -1.62921e-07, 0, 101.458, 0, 58.762, 0, -1, 0, -1.65296e-05, -0.133263, 0, -79.5111 )
+input_ray_pickable = false
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall4"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall4"]
+shape = SubResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Node" parent="CanvasLayer"]
+
+[node name="Name" type="Label" parent="CanvasLayer/GUI"]
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_scale = Vector2( 1.12358, 1.15881 )
+text = "Name: None"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WHOWON" type="Label" parent="CanvasLayer/GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -302.171
+margin_top = -66.4619
+margin_right = 721.829
+margin_bottom = 533.538
+rect_scale = Vector2( 2.63112, 2.65797 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayersLeft" type="Label" parent="CanvasLayer/GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -247.212
+margin_top = 4.86982
+margin_right = 776.788
+margin_bottom = 604.87
+rect_scale = Vector2( 1.41561, 1.55504 )
+text = "Players: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Label" parent="CanvasLayer/GUI"]
+margin_left = 3.07719
+margin_top = 28.9448
+margin_right = 1027.08
+margin_bottom = 628.945
+rect_scale = Vector2( 1.15681, 1.2729 )
+text = "Health: None"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kills" type="Label" parent="CanvasLayer/GUI"]
+margin_left = 4.92091
+margin_top = 58.7291
+margin_right = 1028.92
+margin_bottom = 658.729
+rect_scale = Vector2( 1.22624, 1.44492 )
+text = "Kills: None"
+__meta__ = {
+"_edit_use_anchors_": false
+}
