@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Rotation.gd" type="Script" id=2]
+[ext_resource path="res://prefabs/Boost.tscn" type="PackedScene" id=3]
+[ext_resource path="res://prefabs/Drift.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Wheel.material" type="Material" id=5]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SphereShape" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="CylinderMesh" id=6]
+
+[sub_resource type="CylinderShape" id=7]
+
+[sub_resource type="BoxShape" id=8]
+
+[node name="Player" type="RigidBody"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 9.5619, 0 )
+gravity_scale = 2.0
+contacts_reported = 3
+contact_monitor = true
+script = ExtResource( 1 )
+
+[node name="CamBase" type="Spatial" parent="."]
+script = ExtResource( 2 )
+
+[node name="CamPlace" type="Spatial" parent="CamBase"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -7 )
+
+[node name="Camera" type="Camera" parent="CamBase/CamPlace"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, -4.76837e-07 )
+current = true
+near = 0.01
+far = 8192.0
+
+[node name="ObstacleDetector" type="RayCast" parent="CamBase/CamPlace"]
+enabled = true
+cast_to = Vector3( 0, 0, 6 )
+
+[node name="Car" type="MeshInstance" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 0.375, 0, 0, 0, 1.5, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="FrontWheel1" type="MeshInstance" parent="."]
+transform = Transform( 0.246337, 0, 0, 0, 0.492841, 0, 0, 0, 0.484745, 1.07647, 0.127518, 1.05826 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( 0.246, 0, 0, 0, 0.493, 0, 0, 0, 0.485, 1.076, 0.128, 1.058 )
+shape = SubResource( 3 )
+
+[node name="FrontWheel2" type="MeshInstance" parent="."]
+transform = Transform( 0.246337, 0, 0, 0, 0.492841, 0, 0, 0, 0.484745, -1.14043, 0.127518, 1.05826 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="."]
+transform = Transform( 0.246, 0, 0, 0, 0.493, 0, 0, 0, 0.485, -1.14, 0.128, 1.058 )
+shape = SubResource( 3 )
+
+[node name="BackWheel1" type="MeshInstance" parent="."]
+transform = Transform( 0.246337, 0, 0, 0, 0.492841, 0, 0, 0, 0.484745, 1.07647, 0.127518, -1.12919 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="."]
+transform = Transform( 0.246, 0, 0, 0, 0.493, 0, 0, 0, 0.485, 1.076, 0.128, -1.129 )
+shape = SubResource( 3 )
+
+[node name="BackWheel2" type="MeshInstance" parent="."]
+transform = Transform( 0.246337, 0, 0, 0, 0.492841, 0, 0, 0, 0.484745, -1.14043, 0.127518, -1.12919 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="."]
+transform = Transform( 0.246, 0, 0, 0, 0.493, 0, 0, 0, 0.485, -1.14, 0.128, -1.129 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 0.375, 0, 0, 0, 1.5, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Place" type="MeshInstance" parent="."]
+transform = Transform( 0.516115, 0, 0, 0, 0.434919, 0, 0, 0, 0.65329, 0, 0.742673, -0.837652 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 0.516, 0, 0, 0, 0.435, 0, 0, 0, 0.653, 0, 0.743, -0.838014 )
+shape = SubResource( 4 )
+
+[node name="Turbo" type="MeshInstance" parent="."]
+transform = Transform( 0.362026, 0, 0, 0, -4.98271e-08, 0.320664, 0, -0.305837, -5.22428e-08, -0.00101662, 0.286385, -1.70184 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 0.362, 0, 0, 0, -4.98537e-08, 0.321, 0, -0.306, -5.22975e-08, -0.001, 0.286, -1.702 )
+shape = SubResource( 7 )
+
+[node name="Boost" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.284231, -1.95148 )
+emitting = false
+randomness = 1.0
+
+[node name="Drift" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -1.13512, -0.141379, -1.51884 )
+emitting = false
+
+[node name="Drift2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 1.06814, -0.141379, -1.51884 )
+emitting = false
+
+[node name="DownDetector" type="RayCast" parent="."]
+enabled = true
+collide_with_areas = true
+
+[node name="FloorDetector" type="Area" parent="."]
+transform = Transform( 1, 0, -7.51398e-08, 0, 1, 0, -7.51398e-08, 0, 1.4612, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FloorDetector"]
+transform = Transform( 1.82085, 0, 1.33733e-07, 0, 1, 0, 1.33733e-07, 0, 1, 0, 0.799441, 0 )
+shape = SubResource( 8 )
+[connection signal="area_entered" from="FloorDetector" to="." method="_on_FloorDetector_area_entered"]
