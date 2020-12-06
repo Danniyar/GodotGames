@@ -1,0 +1,770 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Scripts/Movement.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/SummonButton.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Elevator.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/LevelButton.gd" type="Script" id=5]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="CapsuleShape" id=2]
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 0.764706, 1, 1 )
+metallic = 1.0
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.172549, 0.482353, 0.576471, 1 )
+metallic = 1.0
+
+[sub_resource type="CubeMesh" id=7]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.611765, 0.611765, 0.603922, 1 )
+metallic = 1.0
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_unshaded = true
+albedo_color = Color( 0.290196, 0.180392, 0.0823529, 1 )
+
+[sub_resource type="BoxShape" id=11]
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath("ElevatorDoor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.334, 1, 0.334 ), Vector3( 0.668001, 1, 0.668001 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ElevatorDoor2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.334, 1, 0.334 ), Vector3( 0.668001, 1, 0.668001 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "change_opened"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -8.0361, 1.28211, 0 ), Vector3( -8.0361, 1.28211, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+tracks/0/type = "value"
+tracks/0/path = NodePath("ElevatorDoor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.668, 1, 0.668 ), Vector3( 0.334, 1, 0.334 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ElevatorDoor2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.668, 1, 0.668 ), Vector3( 0.334, 1, 0.334 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "change_opened"
+} ]
+}
+
+[sub_resource type="BoxShape" id=15]
+
+[sub_resource type="BoxShape" id=16]
+
+[sub_resource type="CubeMesh" id=17]
+
+[sub_resource type="SpatialMaterial" id=18]
+flags_unshaded = true
+albedo_color = Color( 0.992157, 1, 0, 1 )
+
+[sub_resource type="BoxShape" id=19]
+
+[node name="Building" type="Spatial"]
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.62179, 0 )
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CamBase" type="Spatial" parent="Player"]
+
+[node name="Camera" type="Camera" parent="Player/CamBase"]
+current = true
+far = 8192.0
+
+[node name="RayCast" type="RayCast" parent="Player/CamBase"]
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="Label" type="Label" parent="Player/CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -7.0
+margin_right = 4.0
+margin_bottom = 7.0
+rect_scale = Vector2( 4.21609, 3.05009 )
+rect_pivot_offset = Vector2( 3.71546, 6.7403 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ElevatorLevel" type="Label" parent="Player/CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -495.466
+margin_top = -281.108
+margin_right = -487.466
+margin_bottom = -267.108
+rect_scale = Vector2( 4.21609, 3.05009 )
+rect_pivot_offset = Vector2( 3.71546, 6.7403 )
+custom_colors/font_color = Color( 1, 0.984314, 0, 1 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerLevel" type="Label" parent="Player/CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -493.647
+margin_top = -230.003
+margin_right = -485.647
+margin_bottom = -216.003
+rect_scale = Vector2( 4.21609, 3.05009 )
+rect_pivot_offset = Vector2( 3.71546, 6.7403 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelDetector" type="Area" parent="Player"]
+
+[node name="CollisionShape2" type="CollisionShape" parent="Player/LevelDetector"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Floor" type="KinematicBody" parent="."]
+transform = Transform( 17.9334, 0, 0, 0, 1, 0, 0, 0, -18.7443, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 5 )
+
+[node name="Floor4" type="KinematicBody" parent="."]
+transform = Transform( 3.26914, -9.7471e-08, 0, 6.97338e-07, 0.195827, -4.11865, -6.97338e-07, -0.195827, -4.11865, -12.3776, 5.23652, -11.0001 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor4"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor4"]
+shape = SubResource( 5 )
+
+[node name="Floor18" type="KinematicBody" parent="."]
+transform = Transform( 3.26914, -9.7471e-08, 0, 6.97338e-07, 0.195827, -4.11865, -8.90646e-07, -0.250112, -5.26038, -12.378, 25.237, -12.2496 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor18"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor18"]
+shape = SubResource( 5 )
+
+[node name="Floor6" type="KinematicBody" parent="."]
+transform = Transform( 2.71972e-07, -0.276941, 2.54604e-07, 0, 1.21055e-08, 5.82465, 6.222, 1.21055e-08, -1.11291e-14, -8.62402, 5.23652, 13.1341 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor6"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor6"]
+shape = SubResource( 5 )
+
+[node name="Floor7" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.97762, 14.8891, -13.7487 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor7"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor7"]
+shape = SubResource( 5 )
+
+[node name="Floor13" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.978, 34.889, -13.749 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor13"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor13"]
+shape = SubResource( 5 )
+
+[node name="Floor9" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.97762, 4.64275, -10.292 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor9"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor9"]
+shape = SubResource( 5 )
+
+[node name="Floor12" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.978, 24.643, -10.292 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor12"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor12"]
+shape = SubResource( 5 )
+
+[node name="Floor14" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 5.84537, 8.06756e-08, -2.76439e-13, -8.978, 44.643, -12.4311 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor14"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor14"]
+shape = SubResource( 5 )
+
+[node name="Floor8" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.97762, 14.8891, 14.0648 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor8"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor8"]
+shape = SubResource( 5 )
+
+[node name="Floor17" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.978, 34.889, 14.065 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor17"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor17"]
+shape = SubResource( 5 )
+
+[node name="Floor15" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.978, 24.889, 8.78963 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor15"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor15"]
+shape = SubResource( 5 )
+
+[node name="Floor16" type="KinematicBody" parent="."]
+transform = Transform( 5.32611e-07, -0.276941, 9.48956e-07, 0, 3.39087e-08, 4.37741, 3.31777, 4.57906e-08, -1.56904e-13, -8.978, 44.889, 8.79 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor16"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor16"]
+shape = SubResource( 5 )
+
+[node name="Floor5" type="KinematicBody" parent="."]
+transform = Transform( 3.26914, -1.07845e-07, 0, 9.00182e-07, 0.195827, -4.64134, -1.2283e-06, -0.267205, -6.3331, -12.5099, 14.8176, 12.3166 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor5"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor5"]
+shape = SubResource( 5 )
+
+[node name="Floor19" type="KinematicBody" parent="."]
+transform = Transform( 3.26914, -1.07845e-07, 0, 9.00182e-07, 0.195827, -4.64134, -1.2283e-06, -0.267205, -6.3331, -12.51, 34.818, 12.317 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor19"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor19"]
+shape = SubResource( 5 )
+
+[node name="Floor2" type="KinematicBody" parent="."]
+transform = Transform( 12.3411, 0, 0, 0, 1, 0, 0, 0, -18.7443, 3.053, 10, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor2"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor2"]
+shape = SubResource( 5 )
+
+[node name="Floor3" type="KinematicBody" parent="."]
+transform = Transform( 12.3411, 0, 0, 0, 1, 0, 0, 0, -18.7443, 3.053, 20, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor3"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor3"]
+shape = SubResource( 5 )
+
+[node name="Floor10" type="KinematicBody" parent="."]
+transform = Transform( 12.3411, 0, 0, 0, 1, 0, 0, 0, -18.7443, 3.053, 30, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor10"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor10"]
+shape = SubResource( 5 )
+
+[node name="Floor11" type="KinematicBody" parent="."]
+transform = Transform( 12.3411, 0, 0, 0, 1, 0, 0, 0, -18.7443, 3.053, 40, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor11"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor11"]
+shape = SubResource( 5 )
+
+[node name="Floor20" type="KinematicBody" parent="."]
+transform = Transform( 19.5273, 0, 0, 0, 1, 0, 0, 0, -22.1225, -0.963622, 55.9053, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor20"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor20"]
+shape = SubResource( 5 )
+
+[node name="Wall" type="KinematicBody" parent="."]
+transform = Transform( 17.9334, 3.25841e-07, 9.95066e-13, 0, 2.55161e-07, -29.3566, 5.84344e-06, -1, -3.05383e-06, 0, 27.4704, 18.2727 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall"]
+shape = SubResource( 5 )
+
+[node name="Wall5" type="KinematicBody" parent="."]
+transform = Transform( 3.31917, 6.03076e-08, 1.8417e-13, 0, 2.55161e-07, -29.3566, 5.84344e-06, -1, -3.05383e-06, -12.6744, 27.4704, 4.57258 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall5"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5"]
+shape = SubResource( 5 )
+
+[node name="Wall6" type="KinematicBody" parent="."]
+transform = Transform( 3.31917, 6.03076e-08, 1.8417e-13, 0, 2.55161e-07, -29.3566, 5.84344e-06, -1, -3.05383e-06, -12.6744, 27.4704, -5.79274 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall6"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall6"]
+shape = SubResource( 5 )
+
+[node name="Wall2" type="KinematicBody" parent="."]
+transform = Transform( 17.9334, 3.25841e-07, 9.95066e-13, 0, 2.55161e-07, -29.3566, 5.84344e-06, -1, -3.05383e-06, 0, 27.4704, -18.7335 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall2"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall2"]
+shape = SubResource( 5 )
+
+[node name="Wall3" type="KinematicBody" parent="."]
+transform = Transform( 2.92172e-06, -1, -3.05383e-06, 0, 2.55161e-07, -29.3566, -17.9334, -1.62921e-07, -4.97533e-13, -16.9026, 27.4704, 0.138485 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall3"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall3"]
+shape = SubResource( 5 )
+
+[node name="Wall4" type="KinematicBody" parent="."]
+transform = Transform( 2.92172e-06, -1, -3.05383e-06, 0, 2.55161e-07, -29.3566, -17.9334, -1.62921e-07, -4.97533e-13, 16.8526, 27.4704, 0.138485 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall4"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall4"]
+shape = SubResource( 5 )
+
+[node name="Elevator" type="KinematicBody" parent="."]
+transform = Transform( 5.45353, 0, 0, 0, 0.171984, 0, 0, 0, 5.28494, -12.0158, 1.28211, 0 )
+script = ExtResource( 3 )
+
+[node name="ElevatorFloor" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.668, 0, 0, 0, 1, 0, 0, 0, 0.668, 0, -1.16849, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorFloor"]
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorFloor"]
+shape = SubResource( 9 )
+
+[node name="ElevatorCeiling" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.668, 0, 0, 0, 1, 0, 0, 0, 0.668, 0, 39.391, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorCeiling"]
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorCeiling"]
+shape = SubResource( 9 )
+
+[node name="ElevatorWall" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.668, 0, 0, 0, 1, 0, 0, 0, 0.668001, 0, 20.0068, 0.622295 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorWall"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorWall"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="ElevatorWall2" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.668, 0, 0, 0, 1, 0, 0, 0, 0.668001, -0.00422144, 20.1735, -0.64167 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorWall2"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorWall2"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="ElevatorWall3" type="KinematicBody" parent="Elevator"]
+transform = Transform( -1.08831e-07, 0, 0.668001, 0, 1, 0, -0.668, 0, -1.08831e-07, -0.622745, 20.173, 0.000787038 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorWall3"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorWall3"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="ElevatorWall4" type="KinematicBody" parent="Elevator"]
+transform = Transform( -1.08831e-07, 0, 0.668001, 0, 1, 0, -0.134399, 0, -2.18964e-08, 0.538618, 19.8468, 0.495281 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorWall4"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorWall4"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="ElevatorWall5" type="KinematicBody" parent="Elevator"]
+transform = Transform( -1.08831e-07, 0, 0.668001, 0, 1, 0, -0.134399, 0, -2.18964e-08, 0.538618, 19.8468, -0.520586 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorWall5"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorWall5"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="ElevatorDoor" type="KinematicBody" parent="Elevator"]
+transform = Transform( -1.08831e-07, 0, 0.668001, 0, 1, 0, -0.668001, 0, -1.08831e-07, 0.632563, 20.173, 0.673652 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorDoor"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorDoor"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="ElevatorDoor2" type="KinematicBody" parent="Elevator"]
+transform = Transform( -1.08831e-07, 0, 0.668001, 0, 1, 0, -0.668001, 0, -1.08831e-07, 0.632563, 20.173, -0.647883 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/ElevatorDoor2"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/ElevatorDoor2"]
+transform = Transform( 1, 0, 0, 0, -1.08991e-08, -20.5056, 0, 0.0668982, -3.34078e-06, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator"]
+shape = SubResource( 11 )
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Elevator"]
+anims/close = SubResource( 12 )
+anims/go = SubResource( 13 )
+anims/open = SubResource( 14 )
+
+[node name="LevelDetector" type="Area" parent="Elevator"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28747, 20.3292, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/LevelDetector"]
+transform = Transform( 2.60347, 0, 0, 0, 1, 0, 0, 0, 3.02767, 0, 0, 0 )
+shape = SubResource( 15 )
+
+[node name="LevelButton1" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.0183367, 0, 0, 0, 0.581449, 0, 0, 0, 0.0189217, 0.492, 13, 0.473 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/LevelButton1"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/LevelButton1"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="LevelButton2" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.0183367, 0, 0, 0, 0.581449, 0, 0, 0, 0.0189217, 0.492, 16, 0.473 )
+script = ExtResource( 5 )
+level = 1
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/LevelButton2"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/LevelButton2"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="LevelButton3" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.0183367, 0, 0, 0, 0.581449, 0, 0, 0, 0.0189217, 0.492, 19, 0.473 )
+script = ExtResource( 5 )
+level = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/LevelButton3"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/LevelButton3"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="LevelButton4" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.0183367, 0, 0, 0, 0.581449, 0, 0, 0, 0.0189217, 0.492, 22, 0.473 )
+script = ExtResource( 5 )
+level = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/LevelButton4"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/LevelButton4"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="LevelButton5" type="KinematicBody" parent="Elevator"]
+transform = Transform( 0.0183367, 0, 0, 0, 0.581449, 0, 0, 0, 0.0189217, 0.492, 25, 0.473 )
+script = ExtResource( 5 )
+level = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="Elevator/LevelButton5"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Elevator/LevelButton5"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="Level1" type="Area" parent="." groups=[
+"level",
+]]
+transform = Transform( 17.4784, 0, 0, 0, 4.93941, 0, 0, 0, 18.4666, 0, 1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723563, 0 )
+shape = SubResource( 19 )
+
+[node name="SummonButton" type="KinematicBody" parent="Level1"]
+transform = Transform( 0.00572134, 0, 0, 0, 0.0202453, 0, 0, 0, 0.00541518, -0.467, 0.5, 0.152 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level1/SummonButton"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level1/SummonButton"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="Level2" type="Area" parent="." groups=[
+"level",
+]]
+transform = Transform( 17.4784, 0, 0, 0, 4.93941, 0, 0, 0, 18.4666, 0, 11, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level2"]
+shape = SubResource( 19 )
+
+[node name="SummonButton" type="KinematicBody" parent="Level2"]
+transform = Transform( 0.00572134, 0, 0, 0, 0.0202453, 0, 0, 0, 0.00541518, -0.467, 0.5, 0.152 )
+script = ExtResource( 2 )
+level = 1
+
+[node name="CollisionShape" type="CollisionShape" parent="Level2/SummonButton"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level2/SummonButton"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="Level3" type="Area" parent="." groups=[
+"level",
+]]
+transform = Transform( 17.4784, 0, 0, 0, 4.93941, 0, 0, 0, 18.4666, 0, 21.5, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level3"]
+shape = SubResource( 19 )
+
+[node name="SummonButton" type="KinematicBody" parent="Level3"]
+transform = Transform( 0.00572134, 0, 0, 0, 0.0202453, 0, 0, 0, 0.00541518, -0.467, 0.5, 0.152 )
+script = ExtResource( 2 )
+level = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Level3/SummonButton"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level3/SummonButton"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="Level4" type="Area" parent="." groups=[
+"level",
+]]
+transform = Transform( 17.4784, 0, 0, 0, 4.93941, 0, 0, 0, 18.4666, 0, 31.5, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level4"]
+shape = SubResource( 19 )
+
+[node name="SummonButton" type="KinematicBody" parent="Level4"]
+transform = Transform( 0.00572134, 0, 0, 0, 0.0202453, 0, 0, 0, 0.00541518, -0.467, 0.5, 0.152 )
+script = ExtResource( 2 )
+level = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="Level4/SummonButton"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level4/SummonButton"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="Level5" type="Area" parent="." groups=[
+"level",
+]]
+transform = Transform( 17.4784, 0, 0, 0, 4.93941, 0, 0, 0, 18.4666, 0, 41.5, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Level5"]
+shape = SubResource( 19 )
+
+[node name="SummonButton" type="KinematicBody" parent="Level5"]
+transform = Transform( 0.00572134, 0, 0, 0, 0.0202453, 0, 0, 0, 0.00541518, -0.467, 0.5, 0.152 )
+script = ExtResource( 2 )
+level = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="Level5/SummonButton"]
+shape = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level5/SummonButton"]
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+[connection signal="area_entered" from="Player/LevelDetector" to="Player" method="_on_LevelDetector_area_entered"]
+[connection signal="area_entered" from="Elevator/LevelDetector" to="Elevator" method="_on_LevelDetector_area_entered"]
