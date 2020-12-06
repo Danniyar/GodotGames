@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkSoulsRipOff", "DarkSoulsRipOff.csproj", "{E2363DB4-DDC3-44CA-B803-F2C1947EB43E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2363DB4-DDC3-44CA-B803-F2C1947EB43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2363DB4-DDC3-44CA-B803-F2C1947EB43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2363DB4-DDC3-44CA-B803-F2C1947EB43E}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{E2363DB4-DDC3-44CA-B803-F2C1947EB43E}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{E2363DB4-DDC3-44CA-B803-F2C1947EB43E}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{E2363DB4-DDC3-44CA-B803-F2C1947EB43E}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
