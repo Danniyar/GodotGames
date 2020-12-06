@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/Wall.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 1.0
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+metallic = 1.0
+
+[node name="World" type="Spatial"]
+
+[node name="Wall" parent="." instance=ExtResource( 2 )]
+transform = Transform( 226.219, 0, 0, 0, -52.1192, 0.000874999, 0, -1.2776e-06, -202.019, 0, 0.47496, 0 )
+
+[node name="Floor" type="KinematicBody" parent="."]
+transform = Transform( 51.6401, 0, 0, 0, -1, 1.67884e-05, 0, -3.25841e-07, -51.5232, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 3 )
+
+[node name="Floor4" type="KinematicBody" parent="."]
+transform = Transform( 51.6401, 0, 0, 0, -1.62921e-07, -51.5232, 0, 1, -8.39419e-06, 0, 34.1446, -48.7793 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor4"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor4"]
+shape = SubResource( 3 )
+
+[node name="Floor6" type="KinematicBody" parent="."]
+transform = Transform( -51.6401, -3.25841e-07, 2.73518e-12, 0, -1.62921e-07, -51.5232, 1.68265e-05, -1, 8.39419e-06, 0, 34.145, 48.779 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor6"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor6"]
+shape = SubResource( 3 )
+
+[node name="Floor3" type="KinematicBody" parent="."]
+transform = Transform( -8.41324e-06, 1, -8.39419e-06, 0, -1.62921e-07, -51.5232, -51.6401, -1.62921e-07, 1.36759e-12, 50.2685, 41.8001, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor3"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor3"]
+shape = SubResource( 3 )
+
+[node name="Floor5" type="KinematicBody" parent="."]
+transform = Transform( -8.41324e-06, -1, 8.39419e-06, 0, -1.62921e-07, -51.5232, 51.6401, -1.62921e-07, 1.36759e-12, -50.118, 39.4539, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor5"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor5"]
+shape = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8416, 5.01556, -34.7436 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Point" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -7.0
+margin_right = 4.0
+margin_bottom = 7.0
+rect_scale = Vector2( 4.31999, 3.32 )
+rect_pivot_offset = Vector2( 3.72944, 6.35989 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}

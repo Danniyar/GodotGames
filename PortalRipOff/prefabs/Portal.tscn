@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Portal.gd" type="Script" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 2 )
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="CubeMesh" id=6]
+
+[sub_resource type="Animation" id=7]
+resource_name = "spawn"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.15, 0.1, 0.125 ), Vector3( 1.5, 1, 1.75 ) ]
+}
+
+[node name="Portal" type="MeshInstance"]
+transform = Transform( -4.23195e-08, -0.1, 0, 0.15, -2.8213e-08, 0, 0, 0, 0.125, -8.1269, 3.0242, 0 )
+layers = 3
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+script = ExtResource( 1 )
+
+[node name="DummyCam" type="Spatial" parent="."]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 2000, 1000 )
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -9.13386, 2.89313, 0 )
+cull_mask = 1
+far = 8192.0
+
+[node name="ObstacleDetector" type="RayCast" parent="Viewport/Camera"]
+transform = Transform( 6.89474e-14, 1.62921e-07, -1.25, 1.5, -2.8213e-07, 0, -4.23195e-07, -1, -2.03651e-07, -1.73042e-07, 0.13107, 1.06213 )
+cast_to = Vector3( 0, 5, 0 )
+
+[node name="PlayerDetector" type="Area" parent="."]
+transform = Transform( 1, 3.84191e-07, 0, -3.84191e-07, 1, 0, 0, 0, 1, 0, 0, 0 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="PlayerDetector"]
+transform = Transform( 1, 1.17505e-10, 0, -1.17505e-07, 0.001, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Edge2" type="KinematicBody" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2" type="CollisionShape" parent="Edge2"]
+transform = Transform( -1.62921e-07, -6.66134e-16, 0.046, -2.50229e-08, 0.01, 2.87669e-15, -1, -2.50229e-10, -7.49435e-09, 1.03467, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Edge2"]
+transform = Transform( -1.62921e-07, -6.66134e-16, 0.046, -2.50229e-08, 0.01, 2.87669e-15, -1, -2.50229e-10, -7.49435e-09, -1.035, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Edge2"]
+transform = Transform( -1.62921e-07, 0, 0.046, 0, 0.01, 0, -1, 0, -7.49435e-09, 1.035, 0, 0 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="Edge2"]
+transform = Transform( -1.62921e-07, 0, 0.046, 1.35525e-20, 0.01, 0, -1, 0, -7.49435e-09, -1.035, 0, 0 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="Edge3" type="KinematicBody" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance" type="MeshInstance" parent="Edge3"]
+transform = Transform( 1, 0, 0, 0, 0.01, 0, 0, 0, 0.046, 0, 0, 1.044 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape3" type="CollisionShape" parent="Edge3"]
+transform = Transform( 1, 4.21782e-09, 0, -4.21782e-07, 0.01, 0, 0, 0, 0.046, 0, 0, 1.04363 )
+shape = SubResource( 5 )
+
+[node name="Edge4" type="KinematicBody" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape4" type="CollisionShape" parent="Edge4"]
+transform = Transform( 1, 4.21782e-09, 0, -4.21782e-07, 0.01, 0, 0, 0, 0.046, 0, 0, -1.04932 )
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Edge4"]
+transform = Transform( 1, 0, 0, -2.84217e-14, 0.01, 0, 0, 0, 0.046, 0, 0, -1.049 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/spawn = SubResource( 7 )
