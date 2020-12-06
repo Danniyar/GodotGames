@@ -1,0 +1,199 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scripts/JumpingBALL.gd" type="Script" id=1]
+[ext_resource path="res://Textures/HealthBar.png" type="Texture" id=3]
+[ext_resource path="res://Textures/BouncingEnemy.PNG" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.214, 28.0646 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/RightEye:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 40.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/LeftEye:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 40.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/RightEye:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/LeftEye:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0, 0.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1241.96, 829.936 )
+
+[sub_resource type="AnimationNodeTimeScale" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "attack"
+
+[sub_resource type="AnimationNodeBlendTree" id=7]
+graph_offset = Vector2( -71.5, 0 )
+nodes/TimeScale/node = SubResource( 5 )
+nodes/TimeScale/position = Vector2( 210, 50 )
+nodes/attack/node = SubResource( 6 )
+nodes/attack/position = Vector2( 40, 50 )
+nodes/output/position = Vector2( 380, 70 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "attack" ]
+
+[sub_resource type="AnimationNodeTimeScale" id=8]
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "idle"
+
+[sub_resource type="AnimationNodeBlendTree" id=10]
+graph_offset = Vector2( 0, 103.317 )
+nodes/TimeScale/node = SubResource( 8 )
+nodes/TimeScale/position = Vector2( 290, 150 )
+nodes/idle/node = SubResource( 9 )
+nodes/idle/position = Vector2( 40, 140 )
+nodes/output/position = Vector2( 500, 150 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "idle" ]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachine" id=13]
+states/attack/node = SubResource( 7 )
+states/attack/position = Vector2( 232, 68.5 )
+states/idle/node = SubResource( 10 )
+states/idle/position = Vector2( 399.5, 68.5 )
+transitions = [ "attack", "idle", SubResource( 11 ), "idle", "attack", SubResource( 12 ) ]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 1, 8 )
+modulate_color = Color( 0.411765, 1, 0, 1 )
+
+[sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 1, 8 )
+modulate_color = Color( 0, 0, 0, 1 )
+
+[node name="JumpingBOI" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="Head" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.12, 0.127 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 2.13885, 16.2634, 466.556, 488.96 )
+
+[node name="RightEye" type="Sprite" parent="Head"]
+position = Vector2( -54.668, 102.796 )
+texture = ExtResource( 4 )
+offset = Vector2( 1.09608, -0.328575 )
+region_enabled = true
+region_rect = Rect2( 589.631, 9.0251, 144.85, 151.316 )
+
+[node name="LeftEye" type="Sprite" parent="Head"]
+position = Vector2( -59.4888, -84.7676 )
+texture = ExtResource( 4 )
+offset = Vector2( 6.68341, 1.30939 )
+region_enabled = true
+region_rect = Rect2( 588.203, 8.4227, 152.393, 159.743 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 1.5
+anims/attack = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 13 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 14 )
+parameters/attack/TimeScale/scale = 1.5
+parameters/idle/TimeScale/scale = 2.0
+
+[node name="PlayerHIT" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="PlayerHIT"]
+shape = SubResource( 1 )
+
+[node name="HPBar" type="ProgressBar" parent="."]
+margin_left = -50.5011
+margin_top = -46.7634
+margin_right = 53.4989
+margin_bottom = -41.7634
+custom_styles/fg = SubResource( 15 )
+custom_styles/bg = SubResource( 16 )
+max_value = 40.0
+value = 40.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_PlayerDetector_body_exited"]
+[connection signal="body_entered" from="PlayerHIT" to="." method="_on_PlayerHIT_body_entered"]
