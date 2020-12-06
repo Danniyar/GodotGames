@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Textures/HealthBar.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Particle.gd" type="Script" id=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+initial_velocity = 161.29
+angular_velocity = 30.97
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 77.4
+angle_random = 0.22
+color = Color( 0.8, 0.819608, 0.235294, 1 )
+
+[node name="DeathEffect" type="Particles2D"]
+pause_mode = 2
+position = Vector2( -1248.5, 107.765 )
+rotation = -1.5708
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )

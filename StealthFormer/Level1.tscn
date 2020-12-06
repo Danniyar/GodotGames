@@ -1,0 +1,366 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/HidingSpot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Textures/HealthBar.png" type="Texture" id=3]
+[ext_resource path="res://prefabs/RobotEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/LevelControl.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64.597, 65.0943 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[sub_resource type="Animation" id=3]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso/LeftWheel:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso/RightWheel:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[sub_resource type="Animation" id=5]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso/LeftWheel:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso/RightWheel:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="Animation" id=7]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso/LeftWheel:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso/RightWheel:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 516.115, 152.522 )
+nextLevel = 2
+
+[node name="Floor" type="KinematicBody2D" parent="."]
+position = Vector2( -12.0868, 678.297 )
+scale = Vector2( 22.3827, 5.99606 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Floor2" type="KinematicBody2D" parent="."]
+position = Vector2( -310.201, 103.519 )
+scale = Vector2( 4.6227, 0.556061 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor2"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall3" type="KinematicBody2D" parent="Floor2"]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 61.3524, -121.236 )
+rotation = 1.5708
+scale = Vector2( 1.37204, -0.0341256 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/Wall3"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor2/Wall3"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall4" type="KinematicBody2D" parent="Floor2"]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( -62.3675, -144.516 )
+rotation = 1.5708
+scale = Vector2( 1.37204, -0.0341256 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/Wall4"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor2/Wall4"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Floor3" type="KinematicBody2D" parent="."]
+position = Vector2( 635.617, -200.248 )
+scale = Vector2( 5.8227, 0.556061 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor3"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall3" type="KinematicBody2D" parent="Floor3"]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 61.3524, -121.236 )
+rotation = 1.5708
+scale = Vector2( 1.37204, -0.0341256 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/Wall3"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor3/Wall3"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall4" type="KinematicBody2D" parent="Floor3"]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( -62.3675, -144.516 )
+rotation = 1.5708
+scale = Vector2( 1.37204, -0.0341256 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/Wall4"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor3/Wall4"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Floor4" type="KinematicBody2D" parent="."]
+position = Vector2( -605.591, -594.77 )
+scale = Vector2( 14.0627, 0.556061 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor4"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall3" type="KinematicBody2D" parent="Floor4"]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 61.3524, -121.236 )
+rotation = 1.5708
+scale = Vector2( 1.37204, -0.0341256 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4/Wall3"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor4/Wall3"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall4" type="KinematicBody2D" parent="Floor4"]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 2.55872, -122.068 )
+rotation = 1.5708
+scale = Vector2( 1.37204, -0.0341256 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4/Wall4"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor4/Wall4"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall" type="KinematicBody2D" parent="."]
+position = Vector2( -1476.75, -1076.12 )
+rotation = 1.5708
+scale = Vector2( 32.9427, 1.31606 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Wall"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall2" type="KinematicBody2D" parent="."]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 1398.77, -1057.82 )
+rotation = 1.5708
+scale = Vector2( 32.9427, 1.31606 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Wall2"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 0.552941 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="HidingSpot" parent="." instance=ExtResource( 2 )]
+position = Vector2( -57.9532, -145.004 )
+
+[node name="HidingSpot2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256.5, -464.528 )
+
+[node name="HidingSpot3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 266.191, -1033.89 )
+
+[node name="RobotEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( -246.248, -128.027 )
+
+[node name="PlayerDetector" parent="RobotEnemy/Torso" index="3"]
+position = Vector2( -1977.26, -274.426 )
+scale = Vector2( 2.98483, 4.81608 )
+
+[node name="AnimationTree" parent="RobotEnemy" index="3"]
+parameters/playback = SubResource( 2 )
+
+[node name="RobotEnemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 607.494, -425.796 )
+
+[node name="PlayerDetector" parent="RobotEnemy2/Torso" index="3"]
+position = Vector2( -1977.26, -274.426 )
+scale = Vector2( 2.985, 4.816 )
+
+[node name="AnimationPlayer" parent="RobotEnemy2" index="2"]
+anims/roll = SubResource( 3 )
+
+[node name="AnimationTree" parent="RobotEnemy2" index="3"]
+parameters/playback = SubResource( 4 )
+
+[node name="RobotEnemy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( -118.488, -804.093 )
+
+[node name="PlayerDetector" parent="RobotEnemy3/Torso" index="3"]
+position = Vector2( -1977.26, -274.426 )
+scale = Vector2( 2.985, 4.816 )
+
+[node name="AnimationPlayer" parent="RobotEnemy3" index="2"]
+anims/roll = SubResource( 5 )
+
+[node name="AnimationTree" parent="RobotEnemy3" index="3"]
+parameters/playback = SubResource( 6 )
+
+[node name="RobotEnemy4" parent="." instance=ExtResource( 4 )]
+position = Vector2( -961.492, -850.797 )
+
+[node name="PlayerDetector" parent="RobotEnemy4/Torso" index="3"]
+position = Vector2( -1977.26, -274.426 )
+scale = Vector2( 2.985, 4.816 )
+
+[node name="AnimationPlayer" parent="RobotEnemy4" index="2"]
+anims/roll = SubResource( 7 )
+
+[node name="AnimationTree" parent="RobotEnemy4" index="3"]
+parameters/playback = SubResource( 8 )
+
+[node name="EasterEgg" type="Label" parent="."]
+margin_left = -1355.39
+margin_top = 148.346
+margin_right = -1152.39
+margin_bottom = 162.346
+rect_scale = Vector2( 1.12, 1.88 )
+text = "uh oh, what are you doing here?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EasterEgg2" type="Label" parent="."]
+margin_left = 1083.68
+margin_top = 181.805
+margin_right = 1286.68
+margin_bottom = 195.805
+rect_scale = Vector2( 1.12, 1.88 )
+text = "you are going on the RIGHT way. get it?"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[editable path="RobotEnemy"]
+
+[editable path="RobotEnemy2"]
+
+[editable path="RobotEnemy3"]
+
+[editable path="RobotEnemy4"]

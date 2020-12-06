@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Textures/EnemyRobot.PNG" type="Texture" id=1]
+[ext_resource path="res://Scripts/EnemyRobot.gd" type="Script" id=2]
+[ext_resource path="res://Textures/FIeldView.PNG" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 58.6855, 780.292 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 557.401, 849.957 )
+
+[sub_resource type="Animation" id=3]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso/LeftWheel:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso/RightWheel:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "rotate"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -257.627, 52.1066 ), Vector2( -257.627, 52.1066 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "roll"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "rotate"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/roll/node = SubResource( 5 )
+states/roll/position = Vector2( 283, 87.5 )
+states/rotate/node = SubResource( 8 )
+states/rotate/position = Vector2( 471, 87 )
+transitions = [ "roll", "rotate", SubResource( 9 ), "rotate", "roll", SubResource( 10 ) ]
+start_node = "roll"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+
+[node name="RobotEnemy" type="KinematicBody2D"]
+position = Vector2( -257.627, 52.1066 )
+scale = Vector2( 0.1, 0.1 )
+script = ExtResource( 2 )
+
+[node name="Torso" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( -12.3713, 116.796, 1023.85, 1340.33 )
+
+[node name="LeftWheel" type="Sprite" parent="Torso"]
+position = Vector2( -359.239, 827.532 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 355, 1502.15, 408, 386.997 )
+
+[node name="RightWheel" type="Sprite" parent="Torso"]
+position = Vector2( 352.824, 849.985 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 355, 1502.15, 408, 386.997 )
+
+[node name="WallDetector" type="Area2D" parent="Torso"]
+position = Vector2( -603.425, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso/WallDetector"]
+position = Vector2( 23.2917, 115.118 )
+shape = SubResource( 1 )
+
+[node name="PlayerDetector" type="Area2D" parent="Torso"]
+position = Vector2( -4024.4, -232.958 )
+scale = Vector2( 7.06561, 4.76792 )
+
+[node name="Sprite" type="Sprite" parent="Torso/PlayerDetector"]
+modulate = Color( 0.101961, 1, 0, 0.34902 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso/PlayerDetector"]
+polygon = PoolVector2Array( -456, -494, -438, -494, -438, -491.4, -436.4, -484, -418, -484, -418, -481.4, -416.4, -474, -409.2, -474, -406, -470.8, -406, -464, -388.4, -464, -386.3, -454, -368.4, -454, -366.3, -444, -348.4, -444, -346.3, -434, -328.4, -434, -326.3, -424, -308.4, -424, -306.3, -414, -288.4, -414, -286.3, -404, -268.4, -404, -266.3, -394, -248, -394, -248, -391.4, -246.4, -384, -228, -384, -228, -381.4, -226.4, -374, -208, -374, -208, -371.4, -206.4, -364, -188, -364, -188, -361.4, -186.4, -354, -179.2, -354, -176, -350.8, -176, -344, -158.4, -344, -156.3, -334, -138, -334, -138, -331.4, -136.4, -324, -129.2, -324, -126, -320.8, -126, -314, -108.4, -314, -106.3, -304, -88, -304, -88, -301.4, -86.4, -294, -79.2, -294, -76, -290.8, -76, -284, -58.4, -284, -56.3, -274, -28.4, -274, -26.3, -264, -8, -264, -8, -261.4, -6.39999, -254, 12, -254, 12, -251.4, 13.6, -244, 41.6, -244, 43.7, -234, 71.6, -234, 73.7, -224, 102, -224, 102, -221.4, 103.6, -214, 132, -214, 132, -211.4, 133.6, -204, 152, -204, 152, -201.4, 153.6, -194, 181.6, -194, 183.7, -184, 212, -184, 212, -181.4, 213.6, -174, 232, -174, 232, -171.4, 233.6, -164, 261.6, -164, 263.7, -154, 292, -154, 292, -151.4, 293.6, -144, 322, -144, 322, -141.4, 323.6, -134, 342, -134, 342, -131.4, 343.6, -124, 381.6, -124, 383.7, -114, 411.6, -114, 413.7, -104, 432, -104, 432, -101.4, 433.6, -94, 461.6, -94, 463.7, -84, 482, -84, 482, -81.4, 483.6, -74, 500, -74, 500, 94, 484, 94, 484, 102, 481.4, 102, 474, 103.6, 474, 110.8, 470.8, 114, 453.7, 114, 451.6, 124, 423.7, 124, 421.6, 134, 394, 134, 394, 140.8, 390.8, 144, 364, 144, 364, 151.8, 344, 153.8, 344, 160.8, 340.8, 164, 314, 164, 314, 171.8, 294, 173.8, 294, 180.8, 290.8, 184, 274, 184, 274, 190.8, 270.8, 194, 243.7, 194, 241.6, 204, 214, 204, 214, 210.8, 210.8, 214, 184, 214, 184, 221.8, 164, 223.8, 164, 230.8, 160.8, 234, 144, 234, 144, 240.8, 140.8, 244, 113.7, 244, 111.6, 254, 83.7, 254, 81.6, 264, 54, 264, 54, 270.8, 50.8, 274, 24, 274, 24, 280.8, 20.8, 284, -16.3, 284, -18.4, 294, -46, 294, -46, 300.8, -49.2, 304, -76, 304, -76, 311.8, -96, 313.8, -96, 320.8, -99.2, 324, -126, 324, -126, 331.8, -146, 333.8, -146, 340.8, -149.2, 344, -166, 344, -166, 350.8, -169.2, 354, -196, 354, -196, 361.8, -216, 363.8, -216, 370.8, -219.2, 374, -236, 374, -236, 381.6, -246, 383.7, -246, 390.8, -249.2, 394, -276.3, 394, -278.4, 404, -296.3, 404, -298.4, 414, -316.3, 414, -318.4, 424, -336, 424, -336, 430.8, -339.2, 434, -356, 434, -356, 440.8, -359.2, 444, -376, 444, -376, 450.8, -379.2, 454, -396, 454, -396, 461.6, -406, 463.7, -406, 470.8, -409.2, 474, -426, 474, -426, 480.8, -429.2, 484, -446, 484, -446, 491.6, -456, 493.7, -456, 500, -500, 500, -500, -500, -456, -500 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -5.104, 173.533 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/roll = SubResource( 3 )
+anims/rotate = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 6 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 7 )
+[connection signal="body_entered" from="Torso/WallDetector" to="." method="_on_WallDetector_body_entered"]
+[connection signal="body_entered" from="Torso/PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
+[connection signal="body_exited" from="Torso/PlayerDetector" to="." method="_on_PlayerDetector_body_exited"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/HidingSpot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Textures/HealthBar.png" type="Texture" id=3]
+[ext_resource path="res://prefabs/RobotEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/LevelControl.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64.597, 65.0943 )
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1491.59, 112.844 )
+
+[node name="Floor" type="KinematicBody2D" parent="."]
+position = Vector2( -12.0868, 678.297 )
+scale = Vector2( 29.5427, 5.99606 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Floor"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 1 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall" type="KinematicBody2D" parent="."]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( -1840.68, -1101.59 )
+rotation = 1.5708
+scale = Vector2( 32.9427, 1.31606 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Wall"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 1 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall3" type="KinematicBody2D" parent="."]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 60.129, 235.321 )
+rotation = 1.5708
+scale = Vector2( 2.70269, 1.31606 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Wall3"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 1 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="Wall2" type="KinematicBody2D" parent="."]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 1817.28, -1054.18 )
+rotation = 1.5708
+scale = Vector2( 32.9427, 1.31606 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Wall2"]
+modulate = Color( 0.168627, 0.490196, 0.662745, 1 )
+scale = Vector2( 129.68, 16.4 )
+texture = ExtResource( 3 )
+
+[node name="HidingSpot" parent="." instance=ExtResource( 2 )]
+position = Vector2( -721.293, 132.727 )
+
+[node name="RobotEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 946.075, 181.461 )
+tutorial = true
+
+[node name="Control" type="Label" parent="."]
+margin_left = -1683.0
+margin_top = -105.0
+margin_right = -1416.0
+margin_bottom = -71.0
+rect_scale = Vector2( 1.52, 2.43101 )
+text = "A to go Left, D to go Right, Space to Jump. Double press Space to Double Jump.  --->"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HidingSpotExp" type="Label" parent="."]
+margin_left = -931.361
+margin_top = -33.6925
+margin_right = -601.361
+margin_bottom = 15.3075
+rect_scale = Vector2( 1.52, 2.43101 )
+text = "This is a hiding spot you can hide in. To hide, stand near and press W. To get outside, press S. While you are in, enemies won't notice you     --->"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemy" type="Label" parent="."]
+margin_left = 228.602
+margin_top = -23.7867
+margin_right = 558.602
+margin_bottom = 25.2133
+rect_scale = Vector2( 1.52, 2.43101 )
+text = "Robots are enemy you must not get noticed by. To kill them, simply jump on them    --->"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToWin" type="Label" parent="."]
+margin_left = 248.178
+margin_top = 146.445
+margin_right = 493.178
+margin_bottom = 162.445
+rect_scale = Vector2( 1.52, 2.43101 )
+text = "To get to the next level, kill all robots"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
