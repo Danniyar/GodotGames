@@ -102,7 +102,7 @@ func _integrate_forces(state):
 		if(Input.is_action_just_pressed("MouseOnOrOff")):
 			mouseOn = !mouseOn
 			if(mouseOn):
-				Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			else:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				
@@ -114,7 +114,8 @@ func _integrate_forces(state):
 			move_vec.z -= 1
 			
 		if(Input.is_action_pressed("boost") && !done && ((int(boost) > 0 && !waiting_for_boost) || (int(boost) > 10 && waiting_for_boost))):
-			$CamBase/CamPlace/Camera.fov = 80
+			$CamBase/CamPlace/Camera/AnimationPlayer.get_animation("zoom").track_set_key_value(0,0,$CamBase/CamPlace/Camera.fov)
+			$CamBase/CamPlace/Camera/AnimationPlayer.play("zoom")
 			limit = 30
 			move_vec.z = 2
 			boost -= 0.4
@@ -125,7 +126,8 @@ func _integrate_forces(state):
 		else:
 			emit(false,1)
 			rpc("emit",false,1)
-			$CamBase/CamPlace/Camera.fov = 70
+			$CamBase/CamPlace/Camera/AnimationPlayer.get_animation("unzoom").track_set_key_value(0,0,$CamBase/CamPlace/Camera.fov)
+			$CamBase/CamPlace/Camera/AnimationPlayer.play("unzoom")
 			limit = 15
 			if(int(boost) < 100):
 				boost += 0.1
