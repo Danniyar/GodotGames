@@ -57,10 +57,10 @@ func _physics_process(delta):
 		if col.get_parent() != null && col.get_parent().has_meta("portal"):
 			still = false
 	if Input.is_action_just_pressed("switch"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		elif Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED) 
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 	var color = ""
 	if Input.is_action_just_pressed("blue_portal"):
 		color = blue_color
