@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Break.wav-8ad1bbdb75c0b2f70a6dece382de3c82.sample"
+
+[deps]
+
+source_file="res://SoundEffects/Break.wav"
+dest_files=[ "res://.import/Break.wav-8ad1bbdb75c0b2f70a6dece382de3c82.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
