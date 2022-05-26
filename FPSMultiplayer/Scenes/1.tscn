@@ -1,0 +1,330 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://Wall.material" type="Material" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+params_diffuse_mode = 1
+
+[sub_resource type="BoxShape" id=3]
+
+[node name="Game" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Tag" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -4.64502
+margin_top = -7.0
+margin_right = 4.64502
+margin_bottom = 7.0
+rect_scale = Vector2( 4.6, 2.92 )
+rect_pivot_offset = Vector2( 3.61396, 6.20627 )
+custom_colors/font_color = Color( 0.388235, 1, 0, 0.305882 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 4.64, 4.64 )
+custom_colors/font_color = Color( 0.0784314, 1, 0, 1 )
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bullets" type="Label" parent="CanvasLayer"]
+margin_left = 116.972
+margin_top = 7.81591
+margin_right = 156.972
+margin_bottom = 21.8159
+rect_scale = Vector2( 1.86566, 1.8837 )
+custom_colors/font_color = Color( 0.94902, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+text = "15/15"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player0" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 300.0
+margin_right = 170.0
+margin_bottom = 314.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 320.0
+margin_right = 170.0
+margin_bottom = 334.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player2" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 340.0
+margin_right = 170.0
+margin_bottom = 354.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player3" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 360.0
+margin_right = 170.0
+margin_bottom = 374.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player4" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 380.0
+margin_right = 170.0
+margin_bottom = 394.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player5" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 400.0
+margin_right = 170.0
+margin_bottom = 414.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player6" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 420.0
+margin_right = 170.0
+margin_bottom = 434.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player7" type="Label" parent="CanvasLayer"]
+margin_left = 13.0
+margin_top = 440.0
+margin_right = 170.0
+margin_bottom = 454.0
+rect_scale = Vector2( 0.800001, 1.08 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillInfo0" type="Label" parent="CanvasLayer"]
+margin_left = 817.33
+margin_top = 553.858
+margin_right = 1020.33
+margin_bottom = 567.858
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillInfo1" type="Label" parent="CanvasLayer"]
+margin_left = 817.094
+margin_top = 568.519
+margin_right = 1020.09
+margin_bottom = 582.519
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KillInfo2" type="Label" parent="CanvasLayer"]
+margin_left = 817.094
+margin_top = 582.706
+margin_right = 1020.09
+margin_bottom = 596.706
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Floor" type="KinematicBody" parent="."]
+transform = Transform( 50.3952, 0, 0, 0, 1, 0, 0, 0, 50.2724, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 3 )
+
+[node name="Wall" type="KinematicBody" parent="."]
+transform = Transform( -50.3952, 0, 0, 0, 1.62921e-07, 27.4083, 0, -1, 4.46539e-06, 0, 14.5857, -49.7482 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall"]
+shape = SubResource( 3 )
+
+[node name="Wall2" type="KinematicBody" parent="."]
+transform = Transform( -50.3952, 0, 0, 0, 1.62921e-07, 27.4083, 0, -1, 4.46539e-06, 0, 14.5857, 50.4053 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall2"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall2"]
+shape = SubResource( 3 )
+
+[node name="Wall3" type="KinematicBody" parent="."]
+transform = Transform( 8.21042e-06, -1, 4.46539e-06, 0, 1.62921e-07, 27.4083, 50.3952, 1.62921e-07, -7.27504e-13, -50.5372, 14.5857, -0.442261 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall3"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall3"]
+shape = SubResource( 3 )
+
+[node name="Wall4" type="KinematicBody" parent="."]
+transform = Transform( 8.21042e-06, -1, 4.46539e-06, 0, 1.62921e-07, 27.4083, 50.3952, 1.62921e-07, -7.27504e-13, 49.0858, 14.5857, -0.442261 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall4"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall4"]
+shape = SubResource( 3 )
+
+[node name="Wall5" type="KinematicBody" parent="."]
+transform = Transform( 8.21042e-06, -1, 4.46539e-06, 0, 1.62921e-07, 27.4083, -31.5931, -1.02136e-07, 4.56077e-13, 28.9981, 14.5857, 9.27015 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall5"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5"]
+shape = SubResource( 3 )
+
+[node name="Wall6" type="KinematicBody" parent="Wall5"]
+transform = Transform( 1.02136e-07, -0.0316525, 1.4134e-07, -31.5931, -2.5988e-07, -4.46538e-06, 1.87796e-07, -5.9442e-09, -1, 0.987895, 32.0887, -1.78814e-07 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall5/Wall6"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5/Wall6"]
+shape = SubResource( 3 )
+
+[node name="Wall7" type="KinematicBody" parent="Wall5"]
+transform = Transform( 0.822102, 5.11946e-11, -2.28605e-16, 1.3002e-07, 0.806266, 8.65095e-07, -7.72853e-16, 1.15159e-09, 1, -0.207005, 11.6399, -5.96046e-08 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall5/Wall7"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5/Wall7"]
+shape = SubResource( 3 )
+
+[node name="Wall6" type="KinematicBody" parent="Wall5/Wall7"]
+transform = Transform( 1.02136e-07, -0.0316525, 1.4134e-07, -31.5931, -2.5988e-07, -4.46538e-06, 1.87796e-07, -5.9442e-09, -1, 0.987895, 32.0887, -1.78814e-07 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall5/Wall7/Wall6"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5/Wall7/Wall6"]
+shape = SubResource( 3 )
+
+[node name="Wall8" type="KinematicBody" parent="Wall5"]
+transform = Transform( 1.83314e-08, 0.0316525, 1.4134e-07, -5.67033, 2.5988e-07, 4.46539e-06, 3.37056e-08, -5.9442e-09, 1, -0.990967, 5.76559, -5.96046e-08 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall5/Wall8"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5/Wall8"]
+shape = SubResource( 3 )
+
+[node name="Wall9" type="KinematicBody" parent="Wall5"]
+transform = Transform( 0.17948, -2.65263e-09, 1.1845e-14, -6.73682e-06, 1, -2.12729e-20, 4.0045e-14, -2.83179e-23, 1, 0.80227, 63.337, -3.57628e-07 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall5/Wall9"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall5/Wall9"]
+shape = SubResource( 3 )
+
+[node name="Wall9" type="KinematicBody" parent="."]
+transform = Transform( 4.4228e-06, -0.538681, 2.40542e-06, 0, 1.62921e-07, 27.4083, -13.6137, -4.40114e-08, 1.96528e-13, 1.73835, 14.5857, 18.403 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall9"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall9"]
+shape = SubResource( 3 )
+
+[node name="Wall6" type="KinematicBody" parent="Wall9"]
+transform = Transform( 1.02136e-07, -0.0316525, 1.4134e-07, -31.5931, -2.5988e-07, -4.46538e-06, 1.87796e-07, -5.9442e-09, -1, 0.987895, 32.0887, -1.78814e-07 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall9/Wall6"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall9/Wall6"]
+shape = SubResource( 3 )
+
+[node name="Wall10" type="KinematicBody" parent="."]
+transform = Transform( -6.81861, -8.79136e-08, 2.23654e-06, 2.21796e-06, 1.42983e-14, 27.4083, -4.43592e-06, 0.538681, 7.27504e-13, -5.06017, 14.5857, 31.2684 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall10"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall10"]
+shape = SubResource( 3 )
+
+[node name="Wall6" type="KinematicBody" parent="Wall10"]
+transform = Transform( 1.02136e-07, -0.0316525, 1.4134e-07, -31.5931, -2.5988e-07, -4.46538e-06, 1.87796e-07, -5.9442e-09, -1, 0.987895, 32.0887, -1.78814e-07 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall10/Wall6"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall10/Wall6"]
+shape = SubResource( 3 )
+
+[node name="SpawnPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.0768, 2.89574, 0 )
+
+[node name="Wall11" type="KinematicBody" parent="."]
+transform = Transform( 8.21042e-06, -1, 4.46539e-06, 2.1684e-19, 1.62921e-07, 27.4083, -22.7795, -7.36431e-08, 3.28845e-13, -31.5058, 14.5857, 27.5985 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall11"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall11"]
+shape = SubResource( 3 )

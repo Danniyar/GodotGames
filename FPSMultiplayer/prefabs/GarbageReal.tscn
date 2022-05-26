@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Garbage.gd" type="Script" id=1]
+[ext_resource path="res://prefabs/Garbage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Audio/Garbage.wav" type="AudioStream" id=4]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="Garbage" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.41914 )
+gravity_scale = 20.79
+script = ExtResource( 1 )
+
+[node name="Garbage" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.108443, 0, 0, 0, 0.159253, 0, 0, 0, 0.163546, 0, 2.57502, 0 )
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="Garbage"]
+transform = Transform( 9.22143, 0, 0, 0, 6.27932, 0, 0, 0, 6.11449, 18.1928, 6.81689, 0 )
+stream = ExtResource( 4 )
+unit_size = 10.0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1.44128, 0, 0, 0, 0.738084, 0, 0, 0, 0.292918, 0.83883, 3.2713, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="BulletPlace" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42636, 3.68487, 0 )

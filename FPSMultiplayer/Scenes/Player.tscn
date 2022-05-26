@@ -1,0 +1,131 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://prefabs/GarbageReal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/HeadSync.gd" type="Script" id=3]
+[ext_resource path="res://prefabs/Pistol.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prefabs/ShotGun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Audio/Step2.wav" type="AudioStream" id=6]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+
+[sub_resource type="SphereMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+
+[sub_resource type="CubeMesh" id=6]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.0313726, 0, 1, 1 )
+metallic = 1.0
+
+[sub_resource type="SphereShape" id=8]
+
+[sub_resource type="BoxShape" id=9]
+
+[node name="Player" type="KinematicBody"]
+transform = Transform( 0.819416, 0, 0, 0, 0.894843, 0, 0, 0, 0.776454, 0, 9.5619, 0 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0200062, 0 )
+shape = SubResource( 1 )
+
+[node name="Body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Head" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, -4.85595e-13, 0, 1, 0, 3.66045e-13, 0, 1, 2.77483e-13, 2.0555, -1.38177e-06 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+script = ExtResource( 3 )
+
+[node name="Glasses" type="MeshInstance" parent="Head"]
+transform = Transform( 0.698067, 0, 0, 0, 0.159898, 0, 0, 0, 0.664069, 0, 0.134747, 0.847188 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="CamBase" type="Camera" parent="Head"]
+transform = Transform( -1.22038, 0, 3.76802e-07, 0, 1.11751, 0, -3.97651e-07, 0, -1.28791, 1.6085e-13, 0.11622, 0.902669 )
+current = true
+far = 8192.0
+
+[node name="Garbage" parent="Head/CamBase" instance=ExtResource( 2 )]
+transform = Transform( -1.06237e-07, 0, 0.819416, 0, 0.894845, 0, -0.776454, 0, -1.26501e-07, -1.42109e-14, -4.1397, -1.443 )
+mode = 1
+
+[node name="Pistol" parent="Head/CamBase" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 2.84217e-14, 0, 1, 4.26326e-14, -1.90632, -1.638 )
+visible = false
+gravity_scale = 20.79
+
+[node name="ShotGun" parent="Head/CamBase" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42109e-14, -1.303, -1.498 )
+visible = false
+gravity_scale = 20.79
+
+[node name="RayCast0" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, 0.992546, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast1" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 0.992546, 0, -0.121869, 0, 1, 0, 0.121869, 0, 0.992546, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast2" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 0.992546, 0.0148521, 0.120961, 0, 0.992546, -0.121869, -0.121869, 0.120961, 0.985148, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast3" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 0.992546, 0.0148521, -0.120961, 0, 0.992546, 0.121869, 0.121869, -0.120961, 0.985148, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast4" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast5" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 1, 0, 0, 0, 0.992546, -0.121869, 0, 0.121869, 0.992546, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast6" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 0.992546, -0.0148521, 0.120961, 0, 0.992546, 0.121869, -0.121869, -0.120961, 0.985148, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast7" type="RayCast" parent="Head/CamBase/ShotGun"]
+transform = Transform( 0.992546, -0.0148521, -0.120961, 0, 0.992546, -0.121869, 0.121869, 0.120961, 0.985148, 0, 1.303, 1.498 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="RayCast" type="RayCast" parent="Head/CamBase"]
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07561, 0 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 0.698067, 0, -3.22469e-13, 0, 0.159898, 0, 2.55524e-13, 0, 0.664069, -1.33907e-13, 2.19025, 0.847187 )
+shape = SubResource( 9 )
+
+[node name="Step" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_size = 20.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.867695, 0.00308927, 0, -0.00308928, -1.15247, 0, 3.68178, 0 )
+flip_v = true
