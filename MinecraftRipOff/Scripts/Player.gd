@@ -29,7 +29,7 @@ func _physics_process(delta):
 		global_transform.origin.z = 0
 	if(Input.is_action_just_pressed("mouse")):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
